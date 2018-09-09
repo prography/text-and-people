@@ -18,7 +18,6 @@ Master > Develop > **
 1. 항상 Develop을 거쳐 Master로 머지.
 2. Develop을 Base로 하여 작업 Branch를 만들 것.
 3. 작업 Branch는 자신이 해야할일과 연관된 이름으로 명명할 것.
-4. 작업 Branch는 자신이 해야할일과 연관된 이름으로 명명할 것.
 
 ## Commit Convention
 - [b] - backend
