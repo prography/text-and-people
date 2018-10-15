@@ -12,7 +12,7 @@
 	- 김도영
 	- 최인지
 
-## Brranches
+## Branches
 Master > Develop > **
 
 1. 항상 Develop을 거쳐 Master로 머지.
