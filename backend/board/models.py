@@ -1,14 +1,13 @@
-
 from django.db import models
 from django.utils import timezone
 from user.models import GithubUser
 
 
-class Category(models.Model):   #카테고리
+class Category(models.Model):
     name = models.CharField(max_length=20)
 
 
-class Post(models.Model):       #포스트
+class Post(models.Model):
     title = models.CharField(max_length=200)
     author = models.ForeignKey(GithubUser, on_delete=models.CASCADE)
     body = models.TextField()
@@ -18,7 +17,7 @@ class Post(models.Model):       #포스트
     good = models.IntegerField()
 
 
-class Comment(models.Model):    #댓글
+class Comment(models.Model):
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
     user = models.ForeignKey(GithubUser, on_delete=models.CASCADE)
     body = models.TextField()
