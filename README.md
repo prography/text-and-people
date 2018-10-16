@@ -19,6 +19,14 @@ Master > Develop > **
 2. Develop을 Base로 하여 작업 Branch를 만들 것.
 3. 작업 Branch는 자신이 해야할일과 연관된 이름으로 명명할 것.
 
+## Stacks
+#### - Frontend
+1. Vue3
+2. Vue Router
+3. Vuex
+4. MaterilizeCSS
+5. Babel(ES6)
+
 ## Commit Convention
 - [b] - backend
 - [f] - frontend
