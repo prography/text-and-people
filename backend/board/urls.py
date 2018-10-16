@@ -5,7 +5,7 @@ from . import views
 app_name = 'board'
 
 router = routers.DefaultRouter()
-router.register(r'board', views.CategoryViewSet)
+router.register(r'category', views.CategoryViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
