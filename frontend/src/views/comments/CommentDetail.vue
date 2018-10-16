@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2>PostDetail</h2>
+    <h2>CommentDetail</h2>
     <router-view></router-view>
   </section>
 </template>

@@ -4,11 +4,11 @@
       <div class="container">
         <div class="nav-wrapper">
           <router-link to="/" class="brand-logo">
-            Post and Developer
+            Posts and Developers
           </router-link>
-          <!-- <a href="#" data-activates="mobile-nav" class="button-collapse">
-            <i class="fa fa-bars"/>
-          </a> -->
+          <a href="#" data-activates="mobile-nav" class="button-collapse">
+            <!-- <i class="fa fa-bars"/> -->
+          </a>
           <ul class="right hide-on-med-and-down">
             <li>
               <router-link to="/">Main</router-link>
@@ -17,29 +17,19 @@
               <router-link to="/about">About</router-link>
             </li>
             <li>
-              <a href="signup.html">Sign Up</a>
+              <router-link to="/sign-up">SignUp</router-link>
             </li>
             <li>
-              <a href="#login-modal" class="btn purple modal-trigger">Login</a>
-            </li>
-            <li>
-              <a href="https://facebook.com">
-                <i class="fab fa-facebook"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://twitter.com">
-                <i class="fab fa-twitter"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://instagram.com">
-                <i class="fab fa-instagram"></i>
-              </a>
+              <router-link
+                to="/sign-in"
+                class="btn purple modal-trigger"
+              >
+                SignIn
+              </router-link>
             </li>
           </ul>
-          <!-- <ul class="side-nav" id="mobile-nav">
-            <h4 class="purple-text text-darken-4 center">Quazzu</h4>
+          <ul class="sidenav" id="mobile-nav">
+            <h4 class="purple-text text-darken-4 center">PAD</h4>
             <li>
               <div class="divider"></div>
             </li>
@@ -61,14 +51,14 @@
             <li>
               <a href="#" class="btn purple">Login</a>
             </li>
-          </ul> -->
+          </ul>
         </div>
       </div>
     </nav>
     <div class="showcase container">
       <div class="row">
         <div class="col s12 m10 offset-m1 center">
-          <h5>Welcome To Quazzu</h5>
+          <h5>Welcome To PAD</h5>
           <h1>Build For The Future</h1>
           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit fugit deserunt quos provident aliquam inventore.</p>
           <br>
@@ -82,19 +72,15 @@
 </template>
 
 <script>
-import $ from 'jquery';
-
 export default {
-  name: 'root',
+  mounted() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, {});
+  },
   data: () => {
     return {
       message: '안녕하세요',
     };
-  },
-  mounted() {
-    $('.carousel.carousel-slider').carousel({ fullWidth: true });
-    $('.button-collapse').sideNav();
-    $('.modal').modal();
   },
   methods: {},
   computed: {

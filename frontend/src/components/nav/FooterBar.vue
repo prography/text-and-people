@@ -4,7 +4,9 @@
       <div class="row">
         <div class="col l6 s12">
           <h5 class="white-text">About Us</h5>
-          <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ducimus, hic id quod enim voluptate </p>
+          <p class="grey-text text-lighten-4">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit dolorem ullam laudantium temporibus ad ex iste at vero ut harum maiores modi, pariatur cum vel magni! Sit ipsa enim totam.
+          </p>
         </div>
         <div class="col l4 offset-l2 s12">
           <h5 class="white-text">Links</h5>
@@ -25,7 +27,7 @@
     </div>
     <div class="footer-copyright deep-purple darken-1">
       <div class="container">
-        Quazzu &copy; 2018
+        PAD &copy; 2018
         <a class="grey-text text-lighten-4 right" href="#!">Terms & Conditions</a>
       </div>
     </div>

@@ -1,7 +1,6 @@
 <template>
   <section>
-    <h2>PostDetail</h2>
-    <router-view></router-view>
+    <h2>PostEdit</h2>
   </section>
 </template>
 
