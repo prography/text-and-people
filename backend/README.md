@@ -28,6 +28,6 @@ cd <BACKEND_PATH>
 # pep8 검사
 flake8 .
 
-# git pull 하기
-git pull
+# 항상 git pull 하기
+git pull origin develop
 ```
