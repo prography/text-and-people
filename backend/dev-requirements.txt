@@ -1,0 +1,7 @@
+-r requirements.txt
+
+flake8
+django-debug-toolbar
+django-extensions
+ipython[notebook]
+django-dotenv

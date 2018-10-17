@@ -118,4 +118,5 @@ dmypy.json
 ### for backend ###
 .idea
 .DS_Store
+secrets.json
 
