@@ -163,10 +163,7 @@ export default {
   beforeCreate() {},
   created() {},
   beforeMount() {},
-  mounted() {
-    var elems = document.querySelectorAll('.carousel');
-    var instances = M.Carousel.init(elems, {});
-  },
+  mounted() {},
   beforeUpdate() {},
   updated() {},
   beforeDestroy() {},
