@@ -33,32 +33,28 @@ export default new Router({
       component: PostList,
     },
     {
-      path: '/posts/:id',
-      name: 'posts',
+      path: '/posts/:postId',
+      name: 'posts-detail',
       component: PostDetail,
       children: [{
         path: 'edit',
-        name: 'post-edit',
         component: PostEdit,
       }, {
         path: '',
-        name: 'comments',
         component: CommentList,
       }]
     },
     {
-      path: '/posts/:id/comments',
+      path: '/posts/:postId/comments',
       name: 'comments',
       component: CommentList,
-    },
-    {
-      path: '/posts/:id/comments/:id',
-      name: 'comments',
-      component: CommentDetail,
       children: [{
-        path: '',
-        name: '/posts/:id/comments/:id',
-        component: CommentEdit,
+        path: ':commentId',
+        component: CommentDetail,
+        children: [{
+          path: 'edit',
+          component: CommentEdit,
+        }]
       }]
     },
     {
