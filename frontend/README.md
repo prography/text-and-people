@@ -14,6 +14,11 @@ yarn install
 yarn run dev
 ```
 
+### Run Json-Server
+```
+yarn server
+```
+
 ### Compiles and minifies for production
 ```
 yarn run build
