@@ -1,16 +1,18 @@
 <template>
   <section class="container">
     <div class="row">
-      <FeaturedCardList
-        :posts="posts"
+      <Slider
+        :items="posts"
       />
     </div>
     <div class="row">
       <template fragment v-for="post in posts">
-        <PostCard
+        <Card
           class="post-card"
           :key="post._id"
-          :post="post"
+          :title="post.title"
+          :description="post.author"
+          :image="post.mainImage"
         />
       </template>
     </div>
@@ -18,15 +20,15 @@
 </template>
 
 <script>
-import PostCard from '@/components/posts/PostCard';
-import FeaturedCardList from '@/components/posts/FeaturedCardList';
+import Card from '@/components/card/Card';
+import Slider from '@/components/slider/Slider';
 
 import { getPosts } from '@/controllers/PostsControllers';
 
 export default {
   components: {
-    PostCard,
-    FeaturedCardList,
+    Card,
+    Slider,
   },
   created() {
     this.getPostsFromAPI();
