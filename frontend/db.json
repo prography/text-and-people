@@ -51,5 +51,11 @@
     "createdDate": 201802222,
     "modifiedDate": 0,
     "deletedDate": 0
+  }],
+  "team": [{
+    "profile": "https://avatars0.githubusercontent.com/u/16330024?s=400&u=75361a7cfb8f3ecc0e4b0fa611092febd4fb57ae&v=4",
+    "name": "설훈",
+    "description": "The Dreamer through the Programming. Deeply and steadily, Every day. 🙌",
+    "github": "https://github.com/Seolhun"
   }]
 }

@@ -4,7 +4,6 @@
       <i
         class="medium material-icons left"
         @click="goToPage(currentPage - 1)"
-
       >
         navigate_before
       </i>
@@ -13,12 +12,12 @@
         v-for="(item, i) in items"
         v-if="i === currentPage"
       >
-        <Card
-          class="item-card"
+        <PostCard
+          class="post-card"
           :key="item._id"
-          :title="item.title"
-          :description="item.author"
-          :image="item.mainImage"
+          :title="item[titleKey]"
+          :description="item[descriptionKey]"
+          :image="item[imageKey]"
         />
       </template>
       <i
@@ -33,11 +32,13 @@
 
 
 <script>
+import PostCard from '@/containers/posts/PostCard';
 import Card from '@/components/card/Card';
 
 export default {
   components: {
     Card,
+    PostCard,
   },
   data: () => {
     return {
@@ -47,17 +48,47 @@ export default {
   props: {
     items: {
       type: Array,
-      default: () => [],
+      required: true,
+    },
+    titleKey: {
+      type: String,
+      default: 'title',
+    },
+    descriptionKey: {
+      type: String,
+      default: 'description',
+    },
+    imageKey: {
+      type: String,
+      default: 'image',
+    },
+    autoPagination: {
+      type: Boolean,
+      default: false,
+    },
+    autoPaginationTime: {
+      type: Number,
+      default: 5000,
     },
   },
+  created() {
+    this.autoPaginationItem();
+  },
   methods: {
-    goToPage(page) {
-      if (this.items.length <= page) {
+    autoPaginationItem() {
+      if (this.autoPagination) {
+        setInterval(() => {
+          this.goToPage(this.currentPage + 1);
+        }, this.autoPaginationTime);
+      }
+    },
+    goToPage(nextPage) {
+      if (this.items.length <= nextPage) {
         this.currentPage = 0;
-      } else if (this.currentPage < 0) {
+      } else if (nextPage < 0) {
         this.currentPage = this.items.length - 1;
       } else {
-        this.currentPage = page;
+        this.currentPage = nextPage;
       }
     },
   },

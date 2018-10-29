@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import About from '../views/about/About';
 import CommentDetail from '../views/comments/CommentDetail';
 import CommentEdit from '../views/comments/CommentEdit';
 import CommentList from '../views/comments/CommentList';
@@ -21,11 +20,6 @@ export default new Router({
       path: '/',
       name: 'main',
       component: Main,
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: About,
     },
     {
       path: '/posts',

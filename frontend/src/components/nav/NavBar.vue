@@ -20,9 +20,6 @@
               <router-link to="/posts">Posts</router-link>
             </li>
             <li>
-              <router-link to="/about">About</router-link>
-            </li>
-            <li>
               <router-link to="/sign-up">SignUp</router-link>
             </li>
             <li>

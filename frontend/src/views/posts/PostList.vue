@@ -3,11 +3,13 @@
     <div class="row">
       <Slider
         :items="posts"
+        :descriptionKey="'author'"
+        :imageKey="'mainImage'"
       />
     </div>
     <div class="row">
       <template fragment v-for="post in posts">
-        <Card
+        <PostCard
           class="post-card"
           :key="post._id"
           :title="post.title"
@@ -20,14 +22,14 @@
 </template>
 
 <script>
-import Card from '@/components/card/Card';
+import PostCard from '@/containers/posts/PostCard';
 import Slider from '@/components/slider/Slider';
 
 import { getPosts } from '@/controllers/PostsControllers';
 
 export default {
   components: {
-    Card,
+    PostCard,
     Slider,
   },
   created() {
