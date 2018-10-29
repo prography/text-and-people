@@ -6,6 +6,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('', include('board.urls', namespace='board')),
+    path('user/', include('user.urls', namespace='user')),
 ]
 
 if settings.DEBUG:
