@@ -1,12 +1,20 @@
-from django.urls import path, include
-from rest_framework import routers
-from . import views
+from django.urls import path
+from rest_framework_extensions.routers import ExtendedSimpleRouter
+from board.views import CategoryViewSet, PostViewSet, CommentViewSet
+
+
+router = ExtendedSimpleRouter()
+router.register(r'category', CategoryViewSet, base_name='category')
+
+
+(
+    router.register(r'post', PostViewSet)
+          .register(r'comment',
+                    CommentViewSet,
+                    base_name='comment-books',
+                    parents_query_lookups=['post'])
+)
+
 
 app_name = 'board'
-
-router = routers.DefaultRouter()
-router.register(r'category', views.CategoryViewSet)
-
-urlpatterns = [
-    path('', include(router.urls)),
-]
+urlpatterns = router.urls
