@@ -1,5 +1,8 @@
 <template>
-  <header class="main-header">
+  <header
+    class="main-header"
+    :class="[isRoot ? '': 'root-header']"
+  >
     <nav class="transparent">
       <div class="container">
         <div class="nav-wrapper">
@@ -14,7 +17,7 @@
               <router-link to="/">Main</router-link>
             </li>
             <li>
-              <router-link to="/about">About</router-link>
+              <router-link to="/posts">Posts</router-link>
             </li>
             <li>
               <router-link to="/sign-up">SignUp</router-link>
@@ -55,7 +58,7 @@
         </div>
       </div>
     </nav>
-    <div class="showcase container">
+    <div class="showcase container" v-if="isRoot">
       <div class="row">
         <div class="col s12 m10 offset-m1 center">
           <h5>Welcome To PAD</h5>
@@ -73,10 +76,7 @@
 
 <script>
 export default {
-  mounted() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems, {});
-  },
+  mounted() {},
   data: () => {
     return {
       message: '안녕하세요',
@@ -84,6 +84,9 @@ export default {
   },
   methods: {},
   computed: {
+    isRoot: function() {
+      return this.$route.path === '/';
+    },
     // 계산된 getter
     reversedMessage: function() {
       // `this` 는 vm 인스턴스를 가리킵니다.
@@ -95,3 +98,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.root-header {
+  min-height: 50px;
+}
+</style>
+
