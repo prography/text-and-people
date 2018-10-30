@@ -32,9 +32,9 @@ echo 'DJANGO_SETTINGS_MODULE=text_and_people.settings.dev' >> .env
 ```bash
 cd <BACKEND_PATH>
 # migrate
-python manage.py migrate
+./manage.py migrate
 # run server
-python manage.py runserver
+./manage.py runserver
 ```
 
 ### Git push 하기 전에!
