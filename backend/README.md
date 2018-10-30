@@ -28,6 +28,15 @@ echo 'DJANGO_SETTINGS_MODULE=text_and_people.settings.dev' >> .env
 ```
 * secrets.json 파일 backend root에 넣어두기
 
+## Run Server
+```bash
+cd <BACKEND_PATH>
+# migrate
+python manage.py migrate
+# run server
+python manage.py runserver
+```
+
 ### Git push 하기 전에!
 ```bash
 cd <BACKEND_PATH> 
