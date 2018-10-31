@@ -1,21 +1,6 @@
 <template>
   <div>
-    <section class="section section-icons center">
-      <div class="container">
-        <div class="row">
-          <Slider
-            :items="[{
-              title: 'Free Account',
-              description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, suscipit!'
-            }, {
-              title: 'NoSQL Databases',
-              description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, suscipit!'
-            }]"
-          >
-          </Slider>
-        </div>
-      </div>
-    </section>
+    <Slider :items="banners" />
 
     <!-- Section: Developers -->
     <section class="section section-developers white-text">
@@ -73,6 +58,8 @@ import Card from '@/components/card/Card';
 import Slider from '@/components/slider/Slider';
 import About from '@/containers/about/About';
 
+import { getBanners } from '@/controllers/BannersControllers';
+
 export default {
   name: 'root',
   components: {
@@ -81,7 +68,9 @@ export default {
     About,
   },
   beforeCreate() {},
-  created() {},
+  created() {
+    this.getBannersFromAPI();
+  },
   beforeMount() {},
   mounted() {},
   beforeUpdate() {},
@@ -90,9 +79,15 @@ export default {
   destroyed() {},
   data: () => {
     return {
-      message: '안녕하세요',
+      banners: [],
     };
   },
-  methods: {},
+  methods: {
+    getBannersFromAPI() {
+      getBanners().then((data) => {
+        this.banners = data;
+      });
+    },
+  },
 };
 </script>

@@ -1,8 +1,5 @@
 <template>
-  <header
-    class="main-header"
-    :class="[isRoot ? '': 'root-header']"
-  >
+  <header class="main-header">
     <nav class="transparent">
       <div class="container">
         <div class="nav-wrapper">
@@ -58,19 +55,6 @@
         </div>
       </div>
     </nav>
-    <div class="showcase container" v-if="isRoot">
-      <div class="row">
-        <div class="col s12 m10 offset-m1 center">
-          <h5>Welcome To PAD</h5>
-          <h1>Build For The Future</h1>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit fugit deserunt quos provident aliquam inventore.</p>
-          <br>
-          <br>
-          <a href="solutions.html" class="btn btn-large white purple-text">Learn More</a>
-          <a href="signup.html" class="btn btn-large purple white-text">Sign Up</a>
-        </div>
-      </div>
-    </div>
   </header>
 </template>
 
@@ -87,21 +71,6 @@ export default {
     isRoot: function() {
       return this.$route.path === '/';
     },
-    // 계산된 getter
-    reversedMessage: function() {
-      // `this` 는 vm 인스턴스를 가리킵니다.
-      return this.message
-        .split('')
-        .reverse()
-        .join('');
-    },
   },
 };
 </script>
-
-<style scoped>
-.root-header {
-  min-height: 50px;
-}
-</style>
-

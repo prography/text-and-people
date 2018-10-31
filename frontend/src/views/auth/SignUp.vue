@@ -36,17 +36,6 @@
                 <input type="text" id="company">
                 <label for="company">Company</label>
               </div>
-              <div class="input-field">
-                <select id="role">
-                  <option value="" disabled selected>Select Role</option>
-                  <option value="professional">Professional Developer</option>
-                  <option value="hobbyist">Hobbyist</option>
-                  <option value="student">Student</option>
-                  <option value="manager">Manager</option>
-                  <option value="other">Other</option>
-                </select>
-                <label for="role">Role</label>
-              </div>
               <input type="submit" value="Signup" class="btn btn-large purple btn-extend">
             </form>
           </div>

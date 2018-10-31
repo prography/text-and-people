@@ -4,7 +4,7 @@
     "title": "title1",
     "category": "tech",
     "tags": ["javascript", "functional"],
-    "content": "#content",
+    "content": "#javascript, functiona",
     "mainImage": "https://avatars0.githubusercontent.com/u/16330024?s=400&u=75361a7cfb8f3ecc0e4b0fa611092febd4fb57ae&v=4",
     "images": ["images1", "images2", "images3", "images4"],
     "author": "seolhun",
@@ -51,6 +51,13 @@
     "createdDate": 201802222,
     "modifiedDate": 0,
     "deletedDate": 0
+  }],
+  "banners": [{
+    "image": "https://i.pinimg.com/originals/b1/a2/ea/b1a2ea20a78c55f20f09c6b39220b34c.jpg",
+    "link": "https://www.pinterest.com/pin/758926974676673437/"
+  }, {
+    "image": "https://cdn.appstorm.net/mac.appstorm.net/files/2012/06/02961_nightfallinparis_1920x1080.jpg",
+    "link": "https://mac.appstorm.net/general/100-gorgeous-wallpapers-for-your-mac/"
   }],
   "team": [{
     "profile": "https://avatars0.githubusercontent.com/u/16330024?s=400&u=75361a7cfb8f3ecc0e4b0fa611092febd4fb57ae&v=4",

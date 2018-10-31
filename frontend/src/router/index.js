@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Cookie from 'js-cookie';
 
 import CommentDetail from '../views/comments/CommentDetail';
 import CommentEdit from '../views/comments/CommentEdit';
@@ -12,6 +13,19 @@ import SignIn from '../views/auth/SignIn';
 import SignUp from '../views/auth/SignUp';
 
 Vue.use(Router);
+
+const requireAuth = (to, from, next) => {
+  const token = Cookie.get('pad-token');
+  if (token) {
+    return next();
+  }
+  next({
+    path: '/sign-in',
+    query: {
+      redirect: to.fullPath
+    },
+  });
+}
 
 export default new Router({
   mode: 'history',
@@ -33,6 +47,7 @@ export default new Router({
       children: [{
         path: 'edit',
         component: PostEdit,
+        beforeEnter: requireAuth,
       }, {
         path: '',
         component: CommentList,
@@ -61,5 +76,20 @@ export default new Router({
       name: 'sign-up',
       component: SignUp,
     },
+    {
+      path: '/logout',
+      beforeEnter(to, from, next) {
+        const token = Cookie.get('pad-token');
+        if (token) {
+          Cookie.remove('pad-token');
+          next('/')
+        }
+        next('/sign-in')
+      }
+    },
+    {
+      path: '*',
+      component: Main
+    }
   ],
 });

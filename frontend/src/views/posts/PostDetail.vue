@@ -6,7 +6,24 @@
 </template>
 
 <script>
+import { getPost } from '@/controllers/PostsControllers';
+
 export default {
   components: {},
+  created() {
+    this.getPostFromAPI();
+  },
+  data: () => {
+    return {
+      post: {},
+    };
+  },
+  methods: {
+    getPostFromAPI() {
+      getPost().then((data) => {
+        this.post = data;
+      });
+    },
+  },
 };
 </script>
