@@ -11,9 +11,8 @@ class CreateUserViewSet(viewsets.ModelViewSet):
     serializer_class = CreateUserSerializer
 
 
-class UserPostViewSet(viewsets.ViewSet):
-    # queryset = Post.objects.all()
+class UserPostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
 
     def get_queryset(self):
-        return Post.objects.filter(author=self.request.user)
+        return Post.objects.filter(user=self.request.user)

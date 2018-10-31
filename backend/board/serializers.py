@@ -1,13 +1,7 @@
-from django.contrib.auth import get_user_model
+from django.utils import timezone
 from rest_framework import serializers
 
-from board.models import Category, Post
-
-
-class AuthorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = get_user_model()
-        fields = ('id', 'username', 'email', 'name')
+from board.models import Category, Post, Comment
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
@@ -17,9 +11,20 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
 
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
-    author = AuthorSerializer(read_only=True)
-    category = CategorySerializer(many=True, read_only=True)
+    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all(), allow_null=True)
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    created_date = serializers.HiddenField(default=timezone.now)
 
     class Meta:
         model = Post
-        fields = ('title', 'author', 'body', 'category', 'created_date', 'published_date', 'good')
+        fields = ('title', 'user', 'body', 'category', 'created_date', 'published_date')
+
+
+class CommentSerializer(serializers.HyperlinkedModelSerializer):
+    post = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all())
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    created_date = serializers.HiddenField(default=timezone.now)
+
+    class Meta:
+        model = Comment
+        fields = ('id', 'body', 'user', 'created_date', 'post')

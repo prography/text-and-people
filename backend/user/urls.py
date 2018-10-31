@@ -7,7 +7,7 @@ from . import views
 app_name = 'user'
 
 router = routers.DefaultRouter()
-router.register(r'register', views.CreateUserViewSet)
+router.register(r'register', views.CreateUserViewSet, base_name='register')
 router.register(r'post', views.UserPostViewSet, base_name='post')
 
 urlpatterns = [
