@@ -4,7 +4,10 @@
       <h5 v-if='!!title'>
         {{ title }}
       </h5>
-      <p v-if='!!description'>
+      <p
+        v-if='!!description'
+        class="truncate"
+      >
         {{ description }}
       </p>
     </div>

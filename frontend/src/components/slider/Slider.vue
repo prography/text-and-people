@@ -1,32 +1,48 @@
 <template>
-  <div class="feature-card">
-    <div class="feature-card-indicator">
-      <i
-        class="medium material-icons left"
-        @click="goToPage(currentPage - 1)"
+  <div class="slider">
+    <i
+      class="medium material-icons slider-indicators indicator-left white-text grey darken-4"
+      @click="goToPage(currentPage - 1)"
+    >
+      navigate_before
+    </i>
+    <template
+      fragment
+      v-for="(item, i) in items"
+      v-if="i === currentPage"
+    >
+      <a
+        class="banner"
+        :key="`slider-${i}`"
+        :href="item[hrefKey]"
+        target="_blank"
       >
-        navigate_before
-      </i>
-      <template
-        fragment
-        v-for="(item, i) in items"
-        v-if="i === currentPage"
-      >
-        <PostCard
-          class="post-card"
-          :key="item._id"
-          :title="item[titleKey]"
-          :description="item[descriptionKey]"
-          :image="item[imageKey]"
+        <img
+          class="responsive-img"
+          :src="item[imageKey]"
+          :alt="item[descriptionKey]"
+          :style="style"
         />
-      </template>
-      <i
-        class="medium material-icons right"
-        @click="goToPage(currentPage + 1)"
-      >
-        navigate_next
-      </i>
-    </div>
+        <h4
+          v-if="!!item[titleKey]"
+          class="banner-title black-text"
+        >
+          {{ item[titleKey] }}
+        </h4>
+        <div
+          v-if="item[descriptionKey]"
+          class="banner-description black-text"
+        >
+          {{ item[descriptionKey] }}
+        </div>
+      </a>
+    </template>
+    <i
+      class="medium material-icons slider-indicators indicator-right white-text grey darken-4"
+      @click="goToPage(currentPage + 1)"
+    >
+      navigate_next
+    </i>
   </div>
 </template>
 
@@ -40,16 +56,16 @@ export default {
     Card,
     PostCard,
   },
-  data: () => {
-    return {
-      currentPage: 0,
-    };
-  },
   props: {
     items: {
       type: Array,
       required: true,
     },
+    imageKey: {
+      type: String,
+      default: 'image',
+    },
+
     titleKey: {
       type: String,
       default: 'title',
@@ -58,17 +74,31 @@ export default {
       type: String,
       default: 'description',
     },
-    imageKey: {
+    hrefKey: {
       type: String,
-      default: 'image',
+      default: 'link',
     },
-    autoPagination: {
+    isAuto: {
       type: Boolean,
       default: false,
     },
     autoPaginationTime: {
       type: Number,
-      default: 5000,
+      default: 7000,
+    },
+    height: {
+      type: Number,
+      default: 600,
+    },
+  },
+  data: () => {
+    return {
+      currentPage: 0,
+    };
+  },
+  computed: {
+    style() {
+      return `height: ${this.height}px`;
     },
   },
   created() {
@@ -76,7 +106,7 @@ export default {
   },
   methods: {
     autoPaginationItem() {
-      if (this.autoPagination) {
+      if (this.isAuto) {
         setInterval(() => {
           this.goToPage(this.currentPage + 1);
         }, this.autoPaginationTime);
@@ -96,28 +126,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.feature-card {
-  padding: 0px 10px;
+.slider {
   background-color: #f3f3f3;
   position: relative;
-  .feature-card-indicator {
-    display: flex;
-    align-items: center;
-    .material-icons {
-      position: absolute;
-      z-index: 10;
-      cursor: pointer;
-      &.left {
-        left: -5%;
-        margin-right: auto;
-      }
-      &.right {
-        right: -5%;
-        margin-left: auto;
-      }
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  .slider-indicators {
+    position: absolute;
+    z-index: 10;
+    cursor: pointer;
+    &.indicator-left {
+      left: 0;
+      margin-right: auto;
+      border-radius: 0 10px 10px 0;
     }
-    .item-card {
-      width: 100%;
+    &.indicator-right {
+      right: 0;
+      margin-left: auto;
+      border-radius: 10px 0 0 10px;
+    }
+  }
+  .banner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-decoration: none;
+    .banner-title {
+      padding: 10px;
+    }
+    .banner-description {
+      font-size: 16px;
+      padding: 10px;
     }
   }
 }

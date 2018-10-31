@@ -8,19 +8,34 @@
 ```bash
 # 가상환경
 # python version 3.6.0
-pyenv install 3.6.0
-pyenv virtualenv 3.6.0 <virtualenv_name>
-cd <BACKEND_PATH>
-pyenv local <virtualenv_name>
+# 3.6.0 설치 안돼있으면 설치
+pyenv instal 3.6.0
 
-# 패키지 설치
-pip install -r dev-requirements.txt
+# python 3.6.0 버전으로 pipenv 설치 
+pyenv local 3.6.0 
+pip install pipenv
+
+# 패키지 설치 + 가상환경 생성
+cd <BACKEND_PATH>
+pipenv install 
+
+# 가상환경 활성화
+pipenv shell
 
 # settings 설정 
 cd $HOME/dev/text-and-people/backend
 echo 'DJANGO_SETTINGS_MODULE=text_and_people.settings.dev' >> .env
 ```
 * secrets.json 파일 backend root에 넣어두기
+
+## Run Server
+```bash
+cd <BACKEND_PATH>
+# migrate
+./manage.py migrate
+# run server
+./manage.py runserver
+```
 
 ### Git push 하기 전에!
 ```bash

@@ -21,7 +21,7 @@
 <script>
 import PlayerCard from '@/components/about/PlayerCard';
 
-import { getPlayers } from '@/controllers/TeamControllers';
+import { getPlayers } from '@/controllers/PlayersControllers';
 
 export default {
   components: {
