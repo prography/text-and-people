@@ -9,6 +9,7 @@ from django.conf import settings
 class User(AbstractUser):
     nickname = models.CharField(max_length=30)
 
+    # 회원가입 시 토큰 생성
     @receiver(post_save, sender=settings.AUTH_USER_MODEL)
     def create_auth_token(sender, instance=None, created=False, **kwargs):
         if created:
