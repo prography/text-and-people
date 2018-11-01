@@ -21,8 +21,8 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class CommentSerializer(serializers.HyperlinkedModelSerializer):
-    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     post = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all())
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     created_date = serializers.HiddenField(default=timezone.now)
 
     class Meta:

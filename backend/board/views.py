@@ -18,8 +18,6 @@ class PostViewSet(viewsets.ModelViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    filter_backends = [DjangoFilterBackend, SearchFilter]
-    filter_fields = ['post', ]
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+    filter_fields = ('post', )
 
-    def create(self, request, *args, **kwargs):
-        return super(CommentViewSet, self).create(request, *args, **kwargs)
