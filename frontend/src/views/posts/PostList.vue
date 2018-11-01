@@ -18,20 +18,22 @@
         >
         </Slider>
       </div>
-      <PostSlider
+      <!-- <PostSlider
         :items="posts"
         :descriptionKey="'author'"
         :imageKey="'mainImage'"
-      />
-      <template fragment v-for="post in posts">
-        <PostCard
-          class="post-card"
-          :key="post._id"
-          :title="post.title"
-          :description="post.author"
-          :image="post.mainImage"
-        />
-      </template>
+      /> -->
+      <section id='posts-section'>
+        <template fragment v-for="(post, i) in posts">
+          <PostCard
+            class="post-card"
+            :key="`${post._id}-${i}`"
+            :title="post.title"
+            :description="post.author"
+            :image="post.mainImage"
+          />
+        </template>
+      </section>
     </div>
   </section>
 </template>
@@ -41,7 +43,7 @@ import Slider from '@/components/slider/Slider';
 import { PostCard, PostSlider } from '@/containers/posts';
 import PreLoader from '@/components/preloader/PreLoader';
 
-import { getPosts } from '@/controllers/PostsControllers';
+import { getPosts, getPupularPosts } from '@/controllers/PostsControllers';
 
 export default {
   components: {
@@ -51,26 +53,42 @@ export default {
     Slider,
   },
   created() {
-    this.getPostsFromAPI();
-    this.getPopularPostsFromAPI();
+    this.handleGetPosts();
+    this.handleGetPopularPosts();
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScrollGettingPosts);
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScrollGettingPosts);
   },
   data: () => {
     return {
       posts: [],
       popularPosts: [],
       loading: true,
+      scrollPage: 0,
     };
   },
   methods: {
-    getPostsFromAPI() {
-      getPosts().then((data) => {
-        this.posts = data;
+    handleScrollGettingPosts() {
+      const bodyHeight = document.getElementById('posts-section').clientHeight;
+      const scrollPercentage = window.scrollY / bodyHeight;
+      if (scrollPercentage > 0.95) {
+        this.scrollPage = this.scrollPage + 1;
+        this.handleGetPosts(this.scrollPage);
+      }
+    },
+    handleGetPosts(page) {
+      getPosts(page).then((data) => {
+        this.posts = [...this.posts, ...data];
+        console.error(this.posts.length);
         this.loading = false;
       });
     },
-    getPopularPostsFromAPI() {
+    handleGetPopularPosts(page) {
       // getPopularPosts().then((data) => {
-      getPosts().then((data) => {
+      getPupularPosts(page).then((data) => {
         this.popularPosts = data;
         this.loading = false;
       });

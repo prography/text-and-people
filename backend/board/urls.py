@@ -1,12 +1,12 @@
-from django.urls import path, include
-from rest_framework import routers
-from . import views
+from django.urls import path
+from rest_framework.routers import DefaultRouter
+from board.views import CategoryViewSet, PostViewSet, CommentViewSet
+
+
+router = DefaultRouter()
+router.register(r'category', CategoryViewSet, base_name='category')
+router.register(r'post', PostViewSet, base_name='post')
+router.register(r'comment', CommentViewSet, base_name='comment')
 
 app_name = 'board'
-
-router = routers.DefaultRouter()
-router.register(r'category', views.CategoryViewSet)
-
-urlpatterns = [
-    path('', include(router.urls)),
-]
+urlpatterns = router.urls

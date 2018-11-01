@@ -22,8 +22,6 @@
           <h4 class="center">Built By
             <span class="deep-purple-text text-darken-1"> Any Language</span>
           </h4>
-          <br>
-          <br>
           <div class="row">
             <h5>BackEnd</h5>
             <div class="col s2">

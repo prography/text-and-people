@@ -9,8 +9,8 @@ import Main from '../views/Main';
 import PostDetail from '../views/posts/PostDetail';
 import PostEdit from '../views/posts/PostEdit';
 import PostList from '../views/posts/PostList';
-import SignIn from '../views/auth/SignIn';
 import SignUp from '../views/auth/SignUp';
+import Editor from '../views/editor/Editor';
 
 Vue.use(Router);
 
@@ -67,14 +67,14 @@ export default new Router({
       }]
     },
     {
-      path: '/sign-in',
-      name: 'sign-in',
-      component: SignIn,
-    },
-    {
       path: '/sign-up',
       name: 'sign-up',
       component: SignUp,
+    },
+    {
+      path: '/editor',
+      name: 'editor',
+      component: Editor,
     },
     {
       path: '/logout',
