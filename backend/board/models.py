@@ -9,7 +9,7 @@ class Category(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now)
