@@ -20,12 +20,13 @@
               <router-link to="/sign-up">SignUp</router-link>
             </li>
             <li>
-              <router-link
-                to="/sign-in"
+              <a
                 class="btn purple modal-trigger"
+                href="#modal1"
+                @click="toggleModal"
               >
                 SignIn
-              </router-link>
+              </a>
             </li>
           </ul>
           <ul class="sidenav" id="mobile-nav">
@@ -55,21 +56,29 @@
         </div>
       </div>
     </nav>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <SignIn />
+    </div>
   </header>
 </template>
 
 <script>
+import SignIn from '@/views/auth/SignIn';
+
 export default {
-  mounted() {},
+  components: {
+    SignIn,
+  },
   data: () => {
     return {
       message: '안녕하세요',
     };
   },
-  methods: {},
-  computed: {
-    isRoot: function() {
-      return this.$route.path === '/';
+  methods: {
+    toggleModal() {
+      const elems = document.querySelectorAll('.modal');
+      const instances = M.Modal.init(elems, {});
     },
   },
 };

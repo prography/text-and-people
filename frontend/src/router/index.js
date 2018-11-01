@@ -9,7 +9,6 @@ import Main from '../views/Main';
 import PostDetail from '../views/posts/PostDetail';
 import PostEdit from '../views/posts/PostEdit';
 import PostList from '../views/posts/PostList';
-import SignIn from '../views/auth/SignIn';
 import SignUp from '../views/auth/SignUp';
 
 Vue.use(Router);
@@ -65,11 +64,6 @@ export default new Router({
           component: CommentEdit,
         }]
       }]
-    },
-    {
-      path: '/sign-in',
-      name: 'sign-in',
-      component: SignIn,
     },
     {
       path: '/sign-up',
