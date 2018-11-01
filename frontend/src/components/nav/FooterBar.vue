@@ -5,22 +5,24 @@
         <div class="col l6 s12">
           <h5 class="white-text">About Us</h5>
           <p class="grey-text text-lighten-4">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit dolorem ullam laudantium temporibus ad ex iste at vero ut harum maiores modi, pariatur cum vel magni! Sit ipsa enim totam.
+            Prography 3기 Up 조의 1차 프로젝트 PAD입니다.
           </p>
         </div>
         <div class="col l4 offset-l2 s12">
           <h5 class="white-text">Links</h5>
           <ul>
             <li>
-              <a class="grey-text text-lighten-3" href="index.html">Home 1</a>
+              <router-link class="grey-text lighten-1" to="/">Main</router-link>
             </li>
             <li>
-              <a class="grey-text text-lighten-3" href="solutions.html">Solutions</a>
+              <router-link class="grey-text lighten-1" to="/posts">Posts</router-link>
             </li>
             <li>
-              <a class="grey-text text-lighten-3" href="signup.html">Signup</a>
+              <router-link class="grey-text lighten-1" to="/editor">Editor</router-link>
             </li>
-
+            <li>
+              <router-link class="grey-text lighten-1" to="/sign-up">SignUp</router-link>
+            </li>
           </ul>
         </div>
       </div>
@@ -28,7 +30,6 @@
     <div class="footer-copyright deep-purple darken-1">
       <div class="container">
         PAD &copy; 2018
-        <a class="grey-text text-lighten-4 right" href="#!">Terms & Conditions</a>
       </div>
     </div>
   </footer>

@@ -30,7 +30,6 @@
       </button>
       <button
         type="button"
-        value="Signup"
         class="btn red modal-close"
       >
         Cancel

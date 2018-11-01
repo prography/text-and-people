@@ -1,5 +1,5 @@
 <template>
-  <div class="row item-card card">
+  <div class="row item-card card hoverable">
     <div :class="`col ${!!image ? 's10' : 's12 item-detail'}`">
       <h5 v-if='!!title'>
         {{ title }}

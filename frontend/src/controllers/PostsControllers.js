@@ -1,8 +1,18 @@
 import Cookie from 'js-cookie';
 
-export const getPosts = async () => {
+export const getPosts = async (page = 0, limit = 20) => {
   try {
-    const response = await fetch('http://localhost:3000/posts');
+    const response = await fetch(`http://localhost:3000/posts?_page=${page}&_limit=${limit}`);
+    const data = await response.json()
+    return data;
+  } catch (error) {
+    return [];
+  }
+}
+
+export const getPupularPosts = async (page = 0, limit = 20) => {
+  try {
+    const response = await fetch(`http://localhost:3000/popular-posts?_page=${page}&_limit=${limit}`);
     const data = await response.json()
     return data;
   } catch (error) {

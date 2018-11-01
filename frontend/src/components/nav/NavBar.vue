@@ -17,6 +17,9 @@
               <router-link to="/posts">Posts</router-link>
             </li>
             <li>
+              <router-link to="/editor">Editor</router-link>
+            </li>
+            <li>
               <router-link to="/sign-up">SignUp</router-link>
             </li>
             <li>
@@ -35,12 +38,16 @@
               <div class="divider"></div>
             </li>
             <li>
-              <a href="index.html">
-                <i class="fa fa-home grey-text text-darken-4"></i> Home</a>
+              <router-link to="/">Main</router-link>
             </li>
             <li>
-              <a href="solutions.html">
-                <i class="fa fa-cog grey-text text-darken-4"></i> Solutions</a>
+              <router-link to="/posts">Posts</router-link>
+            </li>
+            <li>
+              <router-link to="/editor">Editor</router-link>
+            </li>
+            <li>
+              <router-link to="/sign-up">SignUp</router-link>
             </li>
             <li>
               <a href="signup.html">
@@ -50,7 +57,13 @@
               <div class="divider"></div>
             </li>
             <li>
-              <a href="#" class="btn purple">Login</a>
+              <a
+                class="btn purple modal-trigger"
+                href="#modal1"
+                @click="toggleModal"
+              >
+                SignIn
+              </a>
             </li>
           </ul>
         </div>
@@ -77,8 +90,10 @@ export default {
   },
   methods: {
     toggleModal() {
+      /* eslint-disable */
       const elems = document.querySelectorAll('.modal');
       const instances = M.Modal.init(elems, {});
+      /* eslint-enable */
     },
   },
 };

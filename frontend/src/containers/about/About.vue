@@ -6,7 +6,7 @@
     <div class="row">
       <template fragment v-for="player in players">
         <PlayerCard
-          class="col s4 team-detail"
+          class="col m6 s12 team-detail"
           :key="player.name"
           :profile="player.profile"
           :name='player.name'
