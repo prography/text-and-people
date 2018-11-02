@@ -4,16 +4,18 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-djangorestframework = "==3.8.2"
-pytz = "==2018.5"
-Django = "==2.1.2"
+django = "*"
+djangorestframework = "*"
+django-cors-headers = "*"
+django-filter = "*"
+django-debug-toolbar = "*"
+django-dotenv = "*"
+django-extensions = "*"
+flake8 = "*"
 
 [dev-packages]
-flake8 = "*"
-django-debug-toolbar = "*"
-django-extensions = "*"
+pytz = "==2018.5"
 ipython = "*"
-django-dotenv = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"

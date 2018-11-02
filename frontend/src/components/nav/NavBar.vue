@@ -19,17 +19,19 @@
             <li>
               <router-link to="/editor">Editor</router-link>
             </li>
-            <li>
+            <li v-show="!isLogined">
               <router-link to="/sign-up">SignUp</router-link>
             </li>
-            <li>
-              <a
-                class="btn purple modal-trigger"
-                href="#modal1"
-                @click="toggleModal"
+            <li v-show="!isLogined">
+              <router-link to="/sign-In">SignIn</router-link>
+            </li>
+            <li v-show="isLogined">
+              <button
+                class="btn red"
+                @click="logout"
               >
-                SignIn
-              </a>
+                LogOut
+              </button>
             </li>
           </ul>
           <ul class="sidenav" id="mobile-nav">
@@ -49,51 +51,46 @@
             <li>
               <router-link to="/sign-up">SignUp</router-link>
             </li>
-            <li>
-              <a href="signup.html">
-                <i class="fa fa-users grey-text text-darken-4"></i> Sign Up</a>
-            </li>
-            <li>
-              <div class="divider"></div>
-            </li>
-            <li>
-              <a
-                class="btn purple modal-trigger"
-                href="#modal1"
-                @click="toggleModal"
-              >
-                SignIn
-              </a>
+            <li v-show="!isLogined">
+              <router-link to="/sign-In">SignIn</router-link>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal">
-      <SignIn />
-    </div>
   </header>
 </template>
 
 <script>
-import SignIn from '@/views/auth/SignIn';
+import EventBus from '@/utils/EventBus';
+import Cookies from 'js-cookie';
 
 export default {
-  components: {
-    SignIn,
+  mounted() {
+    const token = Cookies.get();
+    if (token) {
+      this.isLogined = true;
+    } else {
+      this.isLogined = false;
+    }
+
+    EventBus.$on('checkLogin', (user) => {
+      if (user.token) {
+        this.isLogined = true;
+      } else {
+        this.isLogined = false;
+      }
+    });
   },
   data: () => {
     return {
-      message: '안녕하세요',
+      isLogined: false,
     };
   },
   methods: {
-    toggleModal() {
-      /* eslint-disable */
-      const elems = document.querySelectorAll('.modal');
-      const instances = M.Modal.init(elems, {});
-      /* eslint-enable */
+    logout() {
+      Cookies.remove('pad-token');
+      this.isLogined = false;
     },
   },
 };

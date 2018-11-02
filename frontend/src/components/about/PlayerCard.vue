@@ -4,8 +4,8 @@
       <h4>{{ name }}</h4>
       <h6 class="description">{{ description }} </h6>
       <img :src="profile" alt="Profile" class="circle responsive-img">
-      <button class="btn black github">
-        <a :href="github" target="_blank" >
+      <button class="btn purple">
+        <a :href="github" target="_blank" class="github">
           Go To Github
         </a>
       </button>
@@ -50,6 +50,7 @@ export default {
   img {
     width: 200px;
     height: 200px;
+    margin: 5px 5px 15px;
   }
 }
 </style>

@@ -1,8 +1,17 @@
 import Cookie from 'js-cookie';
 
-export const getPosts = async (page = 0, limit = 20) => {
+export const getPosts = async ({
+  page = 0,
+  limit = 20,
+  ignorePaging = false,
+  sortBy = 'id',
+  orderBy = 'DESC',
+}) => {
   try {
-    const response = await fetch(`http://localhost:3000/posts?_page=${page}&_limit=${limit}`);
+    const queryParams = !ignorePaging ?
+      `?_page=${page}&_limit=${limit}&sort=${sortBy}&_order=${orderBy}` :
+      '';
+    const response = await fetch(`http://localhost:3000/posts${queryParams}`);
     const data = await response.json()
     return data;
   } catch (error) {
@@ -40,10 +49,10 @@ export const createPost = async ({
       headers: {
         'Authentication': Cookie.get('pad-token'),
       },
-      body: {
+      body: JSON.stringify({
         title,
         content,
-      }
+      })
     });
     const data = await response.json()
     return data;

@@ -14,7 +14,7 @@
       >
         <PostCard
           class="post-card"
-          :key="item._id"
+          :key="item.id"
           :title="item[titleKey]"
           :description="item[descriptionKey]"
           :image="item[imageKey]"
