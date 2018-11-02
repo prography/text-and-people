@@ -10,6 +10,8 @@ import PostDetail from '../views/posts/PostDetail';
 import PostEdit from '../views/posts/PostEdit';
 import PostList from '../views/posts/PostList';
 import SignUp from '../views/auth/SignUp';
+import SignIn from '../views/auth/SignIn';
+import SignUpDetail from '../views/auth/SignUpDetail';
 import Editor from '../views/editor/Editor';
 
 Vue.use(Router);
@@ -70,7 +72,17 @@ export default new Router({
       path: '/sign-up',
       name: 'sign-up',
       component: SignUp,
+      children: [{
+        path: ':username',
+        component: SignUpDetail,
+      }]
     },
+    {
+      path: '/sign-in',
+      name: 'sign-in',
+      component: SignIn,
+    },
+
     {
       path: '/editor',
       name: 'editor',

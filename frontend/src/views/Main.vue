@@ -20,24 +20,50 @@
       <div class="container">
         <div class="row">
           <h4 class="center">Built By
-            <span class="deep-purple-text text-darken-1"> Any Language</span>
+            <span class="deep-purple-text text-darken-1"> Stacks</span>
           </h4>
           <div class="row">
-            <h5>BackEnd</h5>
             <div class="col s2">
-              <img src="@/assets/img/python-logo.png" class="responsive-img" alt="">
+              <img
+                src="@/assets/img/python-logo.png"
+                class="responsive-img stacks"
+                alt=""
+              >
             </div>
             <div class="col s2">
-              <img src="@/assets/img/node-logo.png" class="responsive-img" alt="">
-            </div>
-          </div>
-          <div class="row">
-            <h5>FrontEnd</h5>
-            <div class="col s2">
-              <img src="@/assets/img/python-logo.png" class="responsive-img" alt="">
+              <img
+                src="@/assets/img/javascript.jpeg"
+                class="responsive-img stacks"
+                alt=""
+              >
             </div>
             <div class="col s2">
-              <img src="@/assets/img/node-logo.png" class="responsive-img" alt="">
+              <img
+                src="@/assets/img/html5.png"
+                class="responsive-img stacks"
+                alt=""
+              >
+            </div>
+            <div class="col s2">
+              <img
+                src="@/assets/img/vue.png"
+                class="responsive-img stacks"
+                alt=""
+              >
+            </div>
+            <div class="col s2">
+              <img
+                src="@/assets/img/webpack.png"
+                class="responsive-img stacks"
+                alt=""
+              >
+            </div>
+            <div class="col s2">
+              <img
+                src="@/assets/img/node-logo.png"
+                class="responsive-img stacks"
+                alt=""
+              >
             </div>
           </div>
         </div>
@@ -89,3 +115,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.stacks {
+  width: 150px;
+  height: 150px;
+}
+</style>
+

@@ -1,13 +1,14 @@
 <template>
   <section class="container">
-    <PreLoader
-      :isShow='loading'
-      v-if="loading"
-    />
     <div
-      class="row"
-      v-else
+      class="fixed-action-btn"
+      @click="goToTop"
     >
+      <a class="btn-floating btn-large blue-grey lighten-5">
+        <i class="large material-icons purple-text">arrow_upward</i>
+      </a>
+    </div>
+    <div class="row">
       <div class="posts-slider">
         <Slider
           :items="popularPosts"
@@ -18,29 +19,35 @@
         >
         </Slider>
       </div>
-      <!-- <PostSlider
+      <PostSlider
         :items="posts"
         :descriptionKey="'author'"
         :imageKey="'mainImage'"
-      /> -->
+      />
       <section id='posts-section'>
         <template fragment v-for="(post, i) in posts">
           <PostCard
             class="post-card"
-            :key="`${post._id}-${i}`"
+            :key="`${post.id}-${i}`"
             :title="post.title"
             :description="post.author"
             :image="post.mainImage"
           />
         </template>
+        <div class="center">
+          <PreLoader :isShow='isGettingPosts' />
+        </div>
       </section>
     </div>
   </section>
 </template>
 
 <script>
-import Slider from '@/components/slider/Slider';
+import _ from 'lodash';
+
 import { PostCard, PostSlider } from '@/containers/posts';
+
+import Slider from '@/components/slider/Slider';
 import PreLoader from '@/components/preloader/PreLoader';
 
 import { getPosts, getPupularPosts } from '@/controllers/PostsControllers';
@@ -53,7 +60,7 @@ export default {
     Slider,
   },
   created() {
-    this.handleGetPosts();
+    this.handleDebouncedGetPosts();
     this.handleGetPopularPosts();
   },
   mounted() {
@@ -66,31 +73,38 @@ export default {
     return {
       posts: [],
       popularPosts: [],
-      loading: true,
       scrollPage: 0,
+      isGettingPosts: false,
     };
   },
   methods: {
+    goToTop() {
+      window.scrollTo(0, 0);
+    },
     handleScrollGettingPosts() {
       const bodyHeight = document.getElementById('posts-section').clientHeight;
       const scrollPercentage = window.scrollY / bodyHeight;
       if (scrollPercentage > 0.95) {
         this.scrollPage = this.scrollPage + 1;
-        this.handleGetPosts(this.scrollPage);
+        this.handleDebouncedGetPosts(this.scrollPage);
       }
     },
-    handleGetPosts(page) {
-      getPosts(page).then((data) => {
-        this.posts = [...this.posts, ...data];
-        console.error(this.posts.length);
-        this.loading = false;
-      });
+    setPosts(data) {
+      this.posts = [...this.posts, ...data];
+      this.isGettingPosts = false;
     },
+    handleDebouncedGetPosts: _.throttle(function(page) {
+      getPosts({ page }).then((data) => {
+        this.isGettingPosts = true;
+        setTimeout(() => {
+          this.setPosts(data);
+        }, 500);
+      });
+    }, 500),
     handleGetPopularPosts(page) {
       // getPopularPosts().then((data) => {
       getPupularPosts(page).then((data) => {
         this.popularPosts = data;
-        this.loading = false;
       });
     },
   },

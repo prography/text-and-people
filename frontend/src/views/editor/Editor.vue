@@ -28,6 +28,9 @@
           Reginster
         </button>
       </div>
+      <div class="center">
+        <PreLoader :isShow="isLoading" />
+      </div>
     </div>
   </section>
 </template>
@@ -36,11 +39,19 @@
 import marked from 'marked';
 import _ from 'lodash';
 
+import PreLoader from '@/components/preloader/PreLoader';
+
+import { createPost } from '@/controllers/PostsControllers';
+
 export default {
+  components: {
+    PreLoader,
+  },
   data: () => {
     return {
       focus: false,
       input: '',
+      isLoading: false,
     };
   },
   computed: {
@@ -49,12 +60,8 @@ export default {
     },
   },
   methods: {
-    update: _.debounce((event) => {
-      // Will be fixed
+    update: _.debounce(function(event) {
       this.input = event.target.value;
-      /* eslint-disable */
-      M.textareaAutoResize($('#markdown-editor'));
-      /* eslint-enable */
     }, 300),
 
     setFocus() {
@@ -63,7 +70,24 @@ export default {
     },
 
     postContent() {
-      //
+      createPost({
+        title,
+        content,
+      })
+        .then(({ data, message }) => {
+          this.isLoading = true;
+          setTimeout(() => {
+            if (data) {
+              this.isLoading = false;
+              this.$router.push(`/posts`);
+            } else {
+              this.message = message;
+            }
+          }, 1000);
+        })
+        .catch(({ message }) => {
+          this.message = message;
+        });
     },
   },
 };
